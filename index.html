@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitauji Homepage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部状态栏 -->
+        <header class="header">
+            <div class="status-modules">
+                <!-- VPN 状态模块 -->
+                <div class="status-card" id="vpn-status">
+                    <div class="status-icon" id="vpn-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <div class="status-text">
+                        <div class="status-label">VPN 状态</div>
+                        <div class="status-value" id="vpn-text">检测中...</div>
+                    </div>
+                </div>
+
+                <!-- 代理更新模块 (现在是一个可以直接点击跳转的链接) -->
+                <a href="https://yoshikawayuko.github.io/proxylink/" target="_blank" class="status-card clickable" id="proxy-update">
+                    <div class="status-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7 10 12 15 17 10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                    </div>
+                    <div class="status-text">
+                        <div class="status-label">代理链接状态</div>
+                        <div class="status-value" id="proxy-text">加载中...</div>
+                    </div>
+                </a>
+            </div>
+        </header>
+
+        <!-- 主标题 (时钟) -->
+        <div class="main-title">
+            <h1 id="clock-title">00:00</h1>
+            <p class="subtitle">起始页</p>
+        </div>
+
+        <!-- 搜索区域 -->
+        <div class="search-container">
+            <div class="search-box">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" id="search-input" placeholder="输入搜索内容..." autocomplete="off">
+                <button id="search-btn">搜索</button>
+            </div>
+            <!-- 搜索联想下拉框 -->
+            <ul id="search-suggestions" class="suggestions hidden"></ul>
+        </div>
+
+<!-- 书签分组区域 -->
+        <div class="bookmarks-section">
+            
+            <!-- 分组 1: Search -->
+            <div class="bookmark-group">
+                <h3 class="group-title">Search</h3>
+                <div class="bookmark-grid">
+                    <a href="https://www.google.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.google.com/favicon.ico" alt="Google"></div>
+                        <span>Google</span>
+                    </a>
+                    <a href="https://global.bing.com/?setlang=en-US&cc=us" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.bing.com/favicon.ico" alt="Bing"></div>
+                        <span>Bing</span>
+                    </a>
+                    <a href="https://duckduckgo.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"></div>
+                        <span>DuckDuckGo</span>
+                    </a>
+                    <a href="https://www.yahoo.co.jp" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.yahoo.co.jp/favicon.ico" alt="Yahoo Japan"></div>
+                        <span>Yahoo Japan</span>
+                    </a>
+                    <a href="https://yandex.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://yandex.com/favicon.ico" alt="Yandex"></div>
+                        <span>Yandex</span>
+                    </a>
+                    <a href="https://www.baidu.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.baidu.com/favicon.ico" alt="百度"></div>
+                        <span>百度</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 分组 2: Media -->
+            <div class="bookmark-group">
+                <h3 class="group-title">Media</h3>
+                <div class="bookmark-grid">
+                    <a href="https://www.bilibili.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.bilibili.com/favicon.ico" alt="bilibili"></div>
+                        <span>bilibili</span>
+                    </a>
+                    <a href="https://www.youtube.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.youtube.com/favicon.ico" alt="YouTube"></div>
+                        <span>YouTube</span>
+                    </a>
+                    <a href="https://x.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://x.com/favicon.ico" alt="X"></div>
+                        <span>X</span>
+                    </a>
+                    <a href="https://www.instagram.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.instagram.com/favicon.ico" alt="Instagram"></div>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://open.spotify.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://open.spotifycdn.com/cdn/images/favicon.0f31d2ea.ico" alt="Spotify"></div>
+                        <span>Spotify</span>
+                    </a>
+                    <a href="https://www.netflix.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico" alt="Netflix"></div>
+                        <span>Netflix</span>
+                    </a>
+                    <a href="https://www.reddit.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.reddit.com/favicon.ico" alt="Reddit"></div>
+                        <span>Reddit</span>
+                    </a>
+                    <a href="https://discord.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://discord.com/favicon.ico" alt="Discord"></div>
+                        <span>Discord</span>
+                    </a>
+                    <a href="https://www.zhihu.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://static.zhihu.com/heifetz/favicon.ico" alt="知乎"></div>
+                        <span>知乎</span>
+                    </a>
+                    <a href="https://www.xiaohongshu.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.xiaohongshu.com/favicon.ico" alt="小红书"></div>
+                        <span>小红书</span>
+                    </a>
+                    <a href="https://www.douyin.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.douyin.com/favicon.ico" alt="抖音（中国）"></div>
+                        <span>抖音（中国）</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 分组 3: AI -->
+            <div class="bookmark-group">
+                <h3 class="group-title">AI</h3>
+                <div class="bookmark-grid">
+                    <a href="https://chatgpt.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://chatgpt.com/favicon.ico" alt="ChatGPT"></div>
+                        <span>ChatGPT</span>
+                    </a>
+                    <a href="https://aistudio.google.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://aistudio.google.com/favicon.ico" alt="Google AI Studio"></div>
+                        <span>Google AI Studio</span>
+                    </a>
+                    <a href="https://chat.deepseek.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.deepseek.com/favicon.ico" alt="DeepSeek"></div>
+                        <span>DeepSeek</span>
+                    </a>
+                    <a href="https://www.doubao.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.doubao.com/favicon.ico" alt="豆包（中国）"></div>
+                        <span>豆包（中国）</span>
+                    </a>
+                    <a href="https://kimi.moonshot.cn" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://kimi.moonshot.cn/favicon.ico" alt="Kimi"></div>
+                        <span>Kimi</span>
+                    </a>
+                    <a href="https://yuanbao.tencent.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://yuanbao.tencent.com/favicon.ico" alt="元宝"></div>
+                        <span>元宝</span>
+                    </a>
+                    <a href="https://claude.ai" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://claude.ai/favicon.ico" alt="Claude"></div>
+                        <span>Claude</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 分组 4: ACGN -->
+            <div class="bookmark-group">
+                <h3 class="group-title">ACGN</h3>
+                <div class="bookmark-grid">
+                    <a href="https://www.bilibili.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.bilibili.com/favicon.ico" alt="bilibili"></div>
+                        <span>bilibili</span>
+                    </a>
+                    <a href="https://www.pixiv.net" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.pixiv.net/favicon.ico" alt="pixiv"></div>
+                        <span>pixiv</span>
+                    </a>
+                    <a href="https://bangumi.tv" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://bgm.tv/img/favicon.ico" alt="Bangumi"></div>
+                        <span>Bangumi</span>
+                    </a>
+                    <a href="https://zh.moegirl.org.cn" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://zh.moegirl.org.cn/favicon.ico" alt="萌娘百科"></div>
+                        <span>萌娘百科</span>
+                    </a>
+                    <a href="https://www.acfun.cn" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.acfun.cn/favicon.ico" alt="ACFun"></div>
+                        <span>ACFun</span>
+                    </a>
+                    <a href="https://www.dlsite.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.dlsite.com/favicon.ico" alt="DLSite"></div>
+                        <span>DLSite</span>
+                    </a>
+                    <a href="https://trace.moe" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://trace.moe/favicon.ico" alt="以图识番"></div>
+                        <span>以图识番</span>
+                    </a>
+                    <a href="https://www.anitabi.cn/map" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.anitabi.cn/favicon.ico" alt="巡礼地图"></div>
+                        <span>巡礼地图</span>
+                    </a>
+                    <a href="https://ys.mihoyo.com/cloud/" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://mhyy.mihoyo.com/favicon.ico" alt="云原神"></div>
+                        <span>云原神</span>
+                    </a>
+                    <a href="https://sr.mihoyo.com/cloud/" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://mhyy.mihoyo.com/favicon.ico" alt="云星穹铁道"></div>
+                        <span>云星穹铁道</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 分组 5: Resources, Learning & Scholar -->
+            <div class="bookmark-group">
+                <h3 class="group-title">Resources, Learning & Scholar</h3>
+                <div class="bookmark-grid">
+                    <a href="https://www.notion.so" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.notion.so/images/favicon.ico" alt="Notion"></div>
+                        <span>Notion</span>
+                    </a>
+                    <a href="https://github.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://github.com/favicon.ico" alt="GitHub"></div>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://www.wikipedia.org" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://en.wikipedia.org/favicon.ico" alt="Wikipedia"></div>
+                        <span>Wikipedia</span>
+                    </a>
+                    <a href="https://i.chaoxing.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://i.chaoxing.com/favicon.ico" alt="学习通"></div>
+                        <span>学习通</span>
+                    </a>
+                    <a href="https://scholar.google.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://scholar.google.com/favicon.ico" alt="Google Scholar"></div>
+                        <span>Google Scholar</span>
+                    </a>
+                    <a href="https://z-lib.sk" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://z-lib.sk/favicon.ico" alt="Z-Library"></div>
+                        <span>Z-Library</span>
+                    </a>
+                    <a href="https://cn.bing.com/academic" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://cn.bing.com/favicon.ico" alt="Bing学术"></div>
+                        <span>Bing学术</span>
+                    </a>
+                    <a href="https://www.cnki.net" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.cnki.net/favicon.ico" alt="CNKI 知网"></div>
+                        <span>CNKI 知网</span>
+                    </a>
+                    <a href="http://lib.muc.edu.cn" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="http://lib.muc.edu.cn/favicon.ico" alt="民图"></div>
+                        <span>民图</span>
+                    </a>
+                    <a href="https://www.mojidict.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.mojidict.com/favicon.ico" alt="Moji辞书"></div>
+                        <span>Moji辞书</span>
+                    </a>
+                    <a href="https://www.languagex.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.languagex.com/favicon.ico" alt="LanguageX"></div>
+                        <span>LanguageX</span>
+                    </a>
+                    <a href="https://www.merriam-webster.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://www.merriam-webster.com/favicon.ico" alt="Merriam-Webster"></div>
+                        <span>Merriam-Webster</span>
+                    </a>
+                    <a href="https://dictionary.cambridge.org" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://dictionary.cambridge.org/favicon.ico" alt="Cambridge Dictionary"></div>
+                        <span>Cambridge Dictionary</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 分组 6: Else -->
+            <div class="bookmark-group">
+                <h3 class="group-title">Else</h3>
+                <div class="bookmark-grid">
+                    <a href="https://mail.qq.com" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://mail.qq.com/favicon.ico" alt="QQ邮箱"></div>
+                        <span>QQ邮箱</span>
+                    </a>
+                    <a href="http://10.210.2.100" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="http://10.210.2.100/favicon.ico" alt="校园网认证"></div>
+                        <span>校园网认证</span>
+                    </a>
+                    </a>
+                    <a href="https://github.com/clash-verge-rev/clash-verge-rev/releases/latest" class="bookmark-card">
+                        <div class="bookmark-icon"><img src="https://github.com/favicon.ico" alt="下载 Clash Verge"></div>
+                        <span>下载 Clash Verge</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
