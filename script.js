@@ -1,7 +1,7 @@
 // ==========================================
 // 在这里手动修改你的代理订阅文本！
 // ==========================================
-const PROXY_UPDATE_TEXT = "4.21 原链接";
+const PROXY_UPDATE_TEXT = "4.23 新链接";
 
 document.getElementById('proxy-text').textContent = PROXY_UPDATE_TEXT;
 
